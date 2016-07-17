@@ -9,7 +9,7 @@ RSA=2048
 cd $(dirname $(readlink -f $0))
 
 ## Delete keys if already existing
-if [ -d $HOST/ ];
+if [ -d $HOST/ ]; then
 	rm -rf $HOST/
 fi
 
