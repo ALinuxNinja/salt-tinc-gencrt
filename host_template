@@ -1,6 +1,4 @@
 Address = {{ tinc['network'][network][nodetype][grains['id']]['public-ip'] }}
-Subnet = {{ tinc['network'][network]['subnet'] }}
-Port = {{ tinc['network'][network]['port'] }}
 {% if tinc['network'][network]['conf'] is defined and tinc['network'][network]['conf']['host'] is defined -%}
 {%- for option, option_value in tinc['network'][network]['conf']['host'].iteritems() -%}
 {%- if tinc['network'][network][nodetype][grains['id']]['conf'] is not defined or tinc['network'][network][nodetype][grains['id']]['conf']['host'] is not defined or tinc['network'][network][nodetype][grains['id']]['conf']['host'][option] is not defined -%}
