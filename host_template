@@ -8,7 +8,7 @@ Port = {{ tinc['network'][network]['port'] }}
 {% endif -%}
 {% endfor -%}
 {%- endif -%}
-{%- if tinc['network'][network][nodetype][grains['id']]['conf'] is defined and tinc['network'][network][nodetype][grains['id']['conf']['host'] is defined %}
+{%- if tinc['network'][network][nodetype][grains['id']]['conf'] is defined and tinc['network'][network][nodetype][grains['id']]['conf']['host'] is defined %}
 {%- for option, option_value in tinc['network'][network][nodetype][grains['id']['conf']['host'].iteritems() -%}
 {{ option }} = {{ option_value }}
 {% endfor -%}
