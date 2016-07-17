@@ -1,16 +1,15 @@
-Address = {% if tinc['network'][network]['master'][host] is defined -%}
-{{ tinc['network'][network]['master'][host]['public-ip'] }}
-{%- else -%}
-{{ tinc['network'][network]['node'][host]['public-ip'] }}
-{%- endif %}
+Address = {{ tinc['network'][network][nodetype][grains['id']]['public-ip'] }}
 Subnet = {{ tinc['network'][network]['subnet'] }}
 Port = {{ tinc['network'][network]['port'] }}
-{% if tinc['network'][network]['compression'] is defined -%}
-Compression = {{ tinc['network'][network]['compression'] }}
+{% if tinc['network'][network]['conf'] is defined and tinc['network'][network]['conf']['host'] is defined -%}
+{%- for option, option_value in tinc['network'][network]['conf']['host'].iteritems() -%}
+{%- if tinc['network'][network][nodetype][grains['id']]['conf'] is not defined or tinc['network'][network][nodetype][grains['id']]['conf']['host'] is not defined or tinc['network'][network][nodetype][grains['id']]['conf']['host'][option] is not defined -%}
+{{ option }} = {{ option_value }}
+{% endif -%}
+{% endfor -%}
 {%- endif -%}
-{% if tinc['network'][network]['digest'] is defined -%}
-Digest = {{ tinc['network'][network]['digest'] }}
+{%- if tinc['network'][network][nodetype][grains['id']]['conf'] is defined and tinc['network'][network][nodetype][grains['id']['conf']['host'] is defined %}
+{%- for option, option_value in tinc['network'][network][nodetype][grains['id']['conf']['host'].iteritems() -%}
+{{ option }} = {{ option_value }}
+{% endfor -%}
 {%- endif -%}
-{% if tinc['network'][network]['cipher'] is defined -%}
-Cipher = {{ tinc['network'][network]['cipher'] }}
-{%- endif %}
