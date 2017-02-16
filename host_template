@@ -1,13 +1,4 @@
 Address = {{ public-ip }}
-{% if tinc['network'][network]['conf'] is defined and tinc['network'][network]['conf']['host'] is defined -%}
-{%- for option, option_value in tinc['network'][network]['conf']['host'].iteritems() -%}
-{%- if tinc['network'][network][nodetype][host]['conf'] is not defined or tinc['network'][network][nodetype][host]['conf']['host'] is not defined or tinc['network'][network][nodetype][host]['conf']['host'][option] is not defined -%}
+{%- for option, option_value in options.iteritems() -%}
 {{ option }} = {{ option_value }}
-{% endif -%}
-{% endfor -%}
-{%- endif -%}
-{%- if tinc['network'][network][nodetype][host]['conf'] is defined and tinc['network'][network][nodetype][host]['conf']['host'] is defined %}
-{%- for option, option_value in tinc['network'][network][nodetype][host]['conf']['host'].iteritems() -%}
-{{ option }} = {{ option_value }}
-{% endfor -%}
-{%- endif -%}
+{%- endfor -%}
