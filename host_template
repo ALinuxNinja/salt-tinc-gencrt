@@ -1,4 +1,4 @@
 Address = {{ public_ip }}
 {%- for option, option_value in options.iteritems() -%}
 {{ option }} = {{ option_value }}
-{%- endfor -%}
+{% endfor -%}
