@@ -1,4 +1,8 @@
 Address = {{ public_ip }}
 {% for option, option_value in options.iteritems() -%}
+{%- if option == "Port" and public_port is defined -%}
+{{ option }} = {{public_port}}
+{% else -%}
 {{ option }} = {{ option_value }}
+{% endif -%}
 {% endfor -%}
